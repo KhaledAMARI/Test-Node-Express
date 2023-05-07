@@ -41,7 +41,7 @@ describe('[1] Test Numbers', () => {
   test('Post Numbers with strings', async () => {
     const res = await supertest(app).post('/Numbers')
       .set('Content-Type', 'application/json')
-      .send([10, 20, 'aaa'])
+      .send({newNumbers: [10, 20, 'aaa']})
 
     expect(res.statusCode).toEqual(501)
     expect(res.body).toEqual({ err: 'Non-numeric values :aaa' })
