@@ -13,9 +13,9 @@ const addNumbers = (req, res) => {
      listOfNumbers = [...listOfNumbers, ...newNumbers];
      console.log(listOfNumbers);
      return res.status(200).send(listOfNumbers);
-   } else {
-     const wrongInputs = newNumbers.filter(number => typeof number === 'string');
-     res.status(501).json({ err: `Non-numeric values :${wrongInputs.join()}` })
+    } else {
+      const wrongInputs = newNumbers.filter(number => typeof number === 'string');
+     res.status(501).json({ err: `Non-numeric values :${wrongInputs.join(', ')}` })
     };
  } else {
    return res.status(400).json({});
