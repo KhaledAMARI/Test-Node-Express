@@ -58,7 +58,7 @@ describe('[1] Test Numbers', () => {
     await supertest(app).get('/Numbers')
     const res = await supertest(app).delete('/Numbers')
       .set('Content-Type', 'application/json')
-      .send(['aaa'])
+      .send({unwantedNumbers: ['aaa']})
     expect(res.statusCode).toEqual(501)
     expect(res.body).toEqual({ err: 'Non-numeric values :aaa' })
   })

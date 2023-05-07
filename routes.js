@@ -11,11 +11,10 @@ const addNumbers = (req, res) => {
  if (typeof newNumbers === 'object') {
    if (newNumbers.every(number => typeof number === 'number')) {
      listOfNumbers = [...listOfNumbers, ...newNumbers];
-     console.log(listOfNumbers);
      return res.status(200).send(listOfNumbers);
     } else {
       const wrongInputs = newNumbers.filter(number => typeof number === 'string');
-     res.status(501).json({ err: `Non-numeric values :${wrongInputs.join(', ')}` })
+      return res.status(501).json({ err: `Non-numeric values :${wrongInputs.join(', ')}` })
     };
  } else {
    return res.status(400).json({});
@@ -26,7 +25,23 @@ const getNumbersMeanValues = (req, res) => {
 }
 const deleteNumbers = (req, res) => {
   const {unwantedNumbers} = req.body;
-  res.status(200).send(listOfNumbers);
+  if (typeof unwantedNumbers === 'object') {
+    if (unwantedNumbers.every(number => typeof number === 'number')) {
+      let indexArray = [];
+     for (const [key, value] of Object.entries(listOfNumbers)) {
+       if (unwantedNumbers.includes(value)) {
+        indexArray.push(key);
+       };
+     };
+      indexArray.map(index => listOfNumbers.splice(index, 1));
+      return res.status(200).send(listOfNumbers);
+    } else {
+       const wrongInputs = unwantedNumbers.filter(number => typeof number === 'string');
+       return res.status(501).json({ err: `Non-numeric values :${wrongInputs.join(', ')}` })
+     };
+  }  else {
+    return res.status(400).json({});
+  }
 }
 module.exports = (app) => {
   app.use(express.json())
