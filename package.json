@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --verbose --coverage ./*.test.js",
-    "serve": "node index.js",
+    "serve": "nodemon index.js",
     "lint": "eslint *.js ",
     "lintArtifact": "eslint -f junit -o .eslint.xml *.js",
     "makePdf": "md-to-pdf README.md  --launch-options  '{ \"args\": [\"--no-sandbox\"] }'",
@@ -16,7 +16,7 @@
   "dependencies": {
     "express": "^4.18.2",
     "md-to-pdf": "^4.1.0",
-    "swagger-ui-express": "^3.0.6",
+    "swagger-ui-express": "^3.0.10",
     "yamljs": "^0.3.0"
   },
   "devDependencies": {

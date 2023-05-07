@@ -22,7 +22,7 @@ describe('[1] Test Numbers', () => {
   test('Add  numbers', async () => {
     const res = await supertest(app).post('/Numbers')
       .set('Content-Type', 'application/json')
-      .send([10, 20, 30])
+      .send({newNumbers:[10, 20, 30]})
 
     expect(res.statusCode).toEqual(200)
     expect(res.body).toEqual(expect.arrayContaining([10, 20, 30]))

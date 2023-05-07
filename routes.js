@@ -10,8 +10,9 @@ const addNumbers = (req, res) => {
  const {newNumbers} = req.body;
  if (typeof newNumbers === 'object') {
    if (newNumbers.every(number => typeof number === 'number')) {
-     listOfNumbers = [...listOfNumbers, ...numbers];
-     return res.status(200).json({message: 'success', listOfNumbers});
+     listOfNumbers = [...listOfNumbers, ...newNumbers];
+     console.log(listOfNumbers);
+     return res.status(200).send(listOfNumbers);
    } else {
      const wrongInputs = newNumbers.filter(number => typeof number === 'string');
      res.status(501).json({ err: `Non-numeric values :${wrongInputs.join()}` })
