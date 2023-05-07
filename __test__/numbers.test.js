@@ -30,10 +30,10 @@ describe('[1] Test Numbers', () => {
   test('Cumulate numbers', async () => {
     await supertest(app).post('/Numbers')
       .set('Content-Type', 'application/json')
-      .send([1, 2, 3])
+      .send({newNumbers: [1, 2, 3]})
     const res = await supertest(app).post('/Numbers')
       .set('Content-Type', 'application/json')
-      .send([10, 20, 30])
+      .send({newNumbers: [10, 20, 30]})
 
     expect(res.statusCode).toEqual(200)
     expect(res.body).toEqual(expect.arrayContaining([1, 2, 3, 10, 20, 30]))
